@@ -1,0 +1,187 @@
+"body": {
+  "displayNames": [
+    {
+      "displayName": "string"
+    }
+  ],
+  "customerNames": [
+    {
+      "customerName": "string",
+      "customerNameAdditional": "string"
+    }
+  ],
+  "communicationDevices": [
+    {
+      "phoneNumber": "string",
+      "smsNumber": "string",
+      "email": "string",
+      "communicationType": "string",
+      "preferredChannel": "string"
+    }
+  ],
+  "faxIds": [
+    {
+      "faxId": "string"
+    }
+  ],
+  "officePhoneNumbers": [
+    {
+      "officePhoneNumber": "string"
+    }
+  ],
+  "streets": [
+    {
+      "street": "string"
+    }
+  ],
+  "addresses": [
+    {
+      "address": "string",
+      "address": "string"
+    }
+    
+  ],
+  "addressCities": [
+    {
+      "addressCity": "string"
+    }
+  ],
+  "countries": [
+    {
+      "country": "string"
+    }
+  ],
+  "legalDetails": [
+    {
+      "legalId": "string",
+      "legalDocumentName": "string",
+      "legalHolderName": "string",
+      "legalIssueAuthorisedDate": "string",
+      "legalIssueDate": "2022-12-20",
+      "legalExpiredDate": "2022-12-20"
+    }
+  ],
+  "otherNationalityIds": [
+    {
+      "otherNationalityId": "string"
+    }
+  ],
+  "employDetails": [
+    {
+      "employStatus": "string",
+      "occupation": "string",
+      "employJobTitle": "string",
+      "employerName": "string",
+      "employStartDate": "2022-12-20",
+      "salaryCurrency": "string",
+      "salaryAmount": 19,
+      "salarysDateFreq": "string"
+    }
+  ],
+  "residenceDetails": [
+    {
+      "residenceStatus": "string",
+      "residenceSince": "2022-12-20",
+      "residenceType": "string",
+      "residenceValue": 19,
+      "residenceMortgageValue": 22
+    }
+  ],
+  "relationshipDetails": [
+    {
+      "jointRelationCode": 17,
+      "jointCustomer": 13,
+      "reverseJointRelationCode": 24,
+      "jointRelationRoleId": 20,
+      "jointRelationRoleNote": "string"
+    }
+  ],
+  "postingRestrictIds": [
+    {
+      "postingRestrictId": 17
+    }
+  ],
+  "taxIds": [
+    {
+      "taxId": "string"
+    }
+  ],
+  "contactDetails": [
+    {
+      "contactType": "string",
+      "iddPrefixPhone": "string",
+      "contactData": "string"
+    }
+  ],
+  "language": 8,
+  "dateOfBirth": "2022-12-20",
+  "customerStatus": 14,
+  "customerMnemonic": "string",
+  "nationalityId": "string",
+  "residenceId": "string",
+  "accountOfficerId": 16,
+  "industryId": 10,
+  "target": 6,
+  "sectorId": 8,
+  "gender": "string",
+  "maritalStatus": "string",
+  "customerCompany": "string",
+  "customerLiability": 17,
+  "postCode": 35,
+  "contactDate": "2022-12-20",
+  "introducer": "string",
+  "kycRelationship": "string",
+  "isKycComplete": true,
+  "kycLastReviewDate": "2022-12-20",
+  "kycNextSystemReviewDate": "2022-12-20",
+  "kycNextReviewDate": "2022-12-20",
+  "amlCheck": "string",
+  "amlResult": "string",
+  "amlLastResultDate": "string",
+  "title": "string",
+  "isSecureMessage": "string",
+  "lastName": "string",
+  "givenName": "string",
+  "birthIncorpDate": "2022-12-20",
+  "domicile": "string",
+  "manualRiskClass": "string",
+  "overrideReason": "string",
+  "numberOfDependents": 18,
+  "dateHijMfb": "string",
+  "dateMfb": "string",
+  "ijfArabicName": "string",
+  "ijfArabicCode": "string",
+  "idExpiryMfb": "string",
+  "idIssueMfb": "string",
+  "dlIssueDtMfb": "string",
+  "dlExpryDtMfb": "string",
+  "selfEmplMfb": "string",
+  "hireDateMfb": "string",
+  "lenSrvcMfb": "string",
+  "jobTitleMfb": "string",
+  "basicWageMfb": "string",
+  "houseAllowMfb": "string",
+  "othAllowMfb": "string",
+  "salaryMfb": "string",
+  "secondJobMfb": "string",
+  "anotherIncMfb": "string",
+  "totSalaryMfb": "string",
+  "sectorMfb": "string",
+  "sectorDetMfb": "string",
+  "firstNmEnMfb": "string",
+  "secNmEnMfb": "string",
+  "thrdNmEnMfb": "string",
+  "lastNmEnMfb": "string",
+  "firstNmArMfb": "string",
+  "fathNmArMfb": "string",
+  "grndNmArMfb": "string",
+  "lastNmArMfb": "string",
+  "nationalityMfb": "string",
+  "noOfVehclMfb": "string",
+  "insideKsaMfb": "string",
+  "aliveMfb": "string",
+  "legalStatsMfb": "string",
+  "totalExpMfb": "string",
+  "customerType": "string"
+}
+}
