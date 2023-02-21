@@ -311,6 +311,7 @@ public class KnockOutS1 implements JavaService2 {
 		String resStatus = "";
 		JSONObject JsonResponse = new JSONObject();
 		JSONObject JsonResult = new JSONObject();
+		String statusCheck = "";
 
 		HashMap<String, Object> imap = new HashMap();
 
@@ -322,14 +323,15 @@ public class KnockOutS1 implements JavaService2 {
 		imap.put("productId", productID);
 		imap.put("scoredCardId", scoreId);
 		imap.put("productName", productName);
-		imap.put("applicationID", getRandomNumberString());
+		String applicationID = getRandomNumberString();
+		imap.put("applicationID", applicationID);
 
 		if (status.equalsIgnoreCase("pass")) {
 			imap.put("applicationStatus", "SID_PRO_ACTIVE");
-
+			statusCheck = "PASS";
 		} else if (status.equalsIgnoreCase("fail")) {
 			imap.put("applicationStatus", "SID_SUSPENDED");
-
+			statusCheck = "FAIL";
 		}
 
 		imap.put("createdby", "SYSTEM");
@@ -366,6 +368,10 @@ public class KnockOutS1 implements JavaService2 {
 				JsonResult.put("isError", "true");
 				JsonResult.put("message", "record not saved");
 			}
+			
+			if (status.equalsIgnoreCase("fail")) {
+			    customerBlockingDBCall(nanId, applicationID, "S1", "Application Declined");
+			}
 
 		} catch (Exception e) {
 
@@ -374,6 +380,8 @@ public class KnockOutS1 implements JavaService2 {
 			JsonResult.put("isError", "true");
 			JsonResult.put("message", e.getMessage());
 		}
+		
+		saveMISReportData(createRequestForMISReportDBCall(nanId, applicationID, statusCheck));
 		return JsonResult;
 	}
 
@@ -417,4 +425,36 @@ public class KnockOutS1 implements JavaService2 {
 		}
 		return false;
 	}
+	
+	private void customerBlockingDBCall(String nationalId, String applicationID, String scoreStage, String FailureReason) throws DBPApplicationException {
+
+	    Map<String, Object> inputParams = new HashMap<>();
+	    inputParams.put("nationalId", nationalId);
+	    inputParams.put("applicationID", applicationID);
+	    inputParams.put("scoreStage", scoreStage);
+	    inputParams.put("FailureReason", FailureReason);
+	    DBPServiceExecutorBuilder.builder().withServiceId("DBMoraServices")
+	            .withOperationId("dbxdb_sp_create_update_customer_blocking").withRequestParameters(inputParams).build()
+	            .getResponse();
+	}
+	
+	private Map<String, Object> createRequestForMISReportDBCall(String nationalId, String applicationID, String status) {
+
+	    Map<String, Object> inputParam = new HashMap<>();
+	    inputParam.put("applicationID", applicationID);
+	    inputParam.put("nationalId", nationalId);
+	    inputParam.put("knockoutStatusS1", status);
+	    return inputParam;
+	}
+
+	private void saveMISReportData(Map<String, Object> inputParams) {
+	    try {
+	        DBPServiceExecutorBuilder.builder().withServiceId("DBMoraServices")
+	                .withOperationId("dbxdb_mis_report_create").withRequestParameters(inputParams).build()
+	                .getResponse();
+	    } catch (Exception ex) {
+	        logger.error("ERROR saveMISReportData :: " + ex);
+	    }
+	}
+
 }

@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mora</groupId>
+	<artifactId>UserReg</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>User Registration</name>
+	<description>User registration</description>
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.kony.middleware/middleware-api -->
+		<dependency>
+			<groupId>com.kony.middleware</groupId>
+			<artifactId>middleware-api</artifactId>
+			<version>9.3.1.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.kony.dbp/DBPFramework -->
+		<dependency>
+			<groupId>com.kony.dbp</groupId>
+			<artifactId>DBPFramework</artifactId>
+			<version>2022.04.00</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.17.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.17.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.temenos.infinity.api.commons</groupId>
+			<artifactId>infinity-api-commons</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/infinity-api-commons.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.temenos.onboarding</groupId>
+			<artifactId>OnBoardingServices</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/OnBoardingServices.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.temenos.onboarding</groupId>
+			<artifactId>OnboardingCommons</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/OnboardingCommons.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>
