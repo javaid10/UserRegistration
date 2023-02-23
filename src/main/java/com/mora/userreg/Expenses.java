@@ -35,6 +35,10 @@ public class Expenses implements JavaService2 {
 		try {
 			JSONArray jarr = new JSONArray(request.getParameter("Expenses"));
 			JsonResponse = new JSONObject();
+			
+			
+			
+			
 			for (int i = 0; i < jarr.length(); i++) {
 				JSONObject job = jarr.getJSONObject(i);
 				HashMap<String, Object> imap = new HashMap();

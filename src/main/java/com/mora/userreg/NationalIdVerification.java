@@ -1321,6 +1321,7 @@ public class NationalIdVerification implements JavaService2 {
 					// return false;
 					checkStatus = false;
 				} else {
+					checkStatus = false;
 					logger.error("T24 prospect not created enter ine else");
 				}
 			}
@@ -1369,8 +1370,8 @@ public class NationalIdVerification implements JavaService2 {
 	public String getMnemonic() {
 		String mnemonic = "";
 		Random random = new Random();
-		int num = random.nextInt(100000);
-		String formatted = String.format("%05d", new Object[] { Integer.valueOf(num) });
+		int num = random.nextInt(1000000000);
+		String formatted = String.format("%09d", new Object[] { Integer.valueOf(num) });
 		mnemonic = "C" + formatted;
 		return mnemonic;
 	}

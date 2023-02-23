@@ -217,9 +217,16 @@ public class KnockOutS1 implements JavaService2 {
 								}
 							} else if (job.getString("knockoutStatus").equalsIgnoreCase("fail")) {
 								ErrorCode.ERR_660028.updateResultObject(result);
-								// result.addParam("ResponseCode", ErrorCode.ERR_660028.toString());
-								// result.addParam("Message", ErrorCode.ERR_660028.getErrorMessage());
-								// result.addParam("ApplicationID",job.getString("applicationID"));
+								
+								HashMap<String, Object> updateParam = new HashMap();
+								updateParam.put("id", customerId);
+								updateParam.put("currentAppId", job.get("applicationID"));
+
+								String cusUpdateResp = DBPServiceExecutorBuilder.builder()
+										.withServiceId("DBMoraServices").withOperationId("applicationIdUpdate")
+										.withRequestParameters(updateParam).build().getResponse();
+
+								JSONObject cusObj = new JSONObject(cusUpdateResp);
 
 							}
 						} else if (job.has("isError")) {
@@ -386,14 +393,46 @@ public class KnockOutS1 implements JavaService2 {
 	}
 
 	public static String getRandomNumberString() {
-		// It will generate 6 digit random Number.
-// from 0 to 999999
+
 		Random rnd = new Random();
 		int number = rnd.nextInt(9999999);
-
-// this will convert any number sequence into 6 character.
-		return "M" + String.format("%07d", number);
+		
+		String applicationId = "M" + String.format("%07d", number);
+		
+		if(checkApplicationIdExist(applicationId)) {
+			getRandomNumberString();
+		}
+		
+		return applicationId;
 	}
+	
+	public static boolean checkApplicationIdExist(String applicationID) {
+		boolean check = false;
+		
+		try {
+			HashMap<String, Object> imap = new HashMap();
+
+			imap.put("applicationid", applicationID);
+			String res = DBPServiceExecutorBuilder.builder().withServiceId("DBMoraServices")
+					.withOperationId("dbxdb_sp_check_applicationid_exist").withRequestParameters(imap).build().getResponse();
+			
+			logger.error("ERROR checkApplicationIdExistresult  :: " + res);
+			
+			JSONObject jsonObject = new JSONObject(res);
+			
+			if(jsonObject.optJSONArray("records").length() > 0 
+					&& jsonObject.optJSONArray("records").optJSONObject(0).optString("message").equalsIgnoreCase("1")) {
+				check = true;
+			}
+			
+		}catch(Exception e) {
+			logger.error("ERROR checkApplicationIdExist :: " + e);
+		}
+		
+		return check;
+	}
+	
+	
 
 	public boolean auditLogData(DataControllerRequest request, DataControllerResponse response, String req, String res,
 			String apiHost) throws DBPApplicationException, MiddlewareException {
@@ -429,10 +468,10 @@ public class KnockOutS1 implements JavaService2 {
 	private void customerBlockingDBCall(String nationalId, String applicationID, String scoreStage, String FailureReason) throws DBPApplicationException {
 
 	    Map<String, Object> inputParams = new HashMap<>();
-	    inputParams.put("nationalId", nationalId);
-	    inputParams.put("applicationID", applicationID);
-	    inputParams.put("scoreStage", scoreStage);
-	    inputParams.put("FailureReason", FailureReason);
+	    inputParams.put("nationalid", nationalId);
+	    inputParams.put("applicationid", applicationID);
+	    inputParams.put("scorestage", scoreStage);
+	    inputParams.put("failurereason", FailureReason);
 	    DBPServiceExecutorBuilder.builder().withServiceId("DBMoraServices")
 	            .withOperationId("dbxdb_sp_create_update_customer_blocking").withRequestParameters(inputParams).build()
 	            .getResponse();
